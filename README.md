@@ -5,7 +5,7 @@ This is a Virtual Ofice mock-up and design for Electric Services Providers
 
 #### Requirements
 NPM package manager
-[Included with Node.js](https://nodejs.org/en/)
+[Included in Node.js](https://nodejs.org/en/)
 
 #### Installation
 On project src run `npm install` command to download dependencies
@@ -14,7 +14,7 @@ On project src run `npm install` command to download dependencies
 On project src run `npm start` command to start the project.
 Application starts on localhost:4200
 
-##### Issues
+#### Issues
 
 - If running the application throws
 
