@@ -1,7 +1,7 @@
 # VO
-Virtual Ofice - Electric Services Providers
+Virtual Office - Electric Services Providers
 
-This is a Virtual Ofice mock-up and design for Electric Services Providers
+This is a Virtual Office mock-up and design for Electric Services Providers
 
 #### Requirements
 NPM package manager
