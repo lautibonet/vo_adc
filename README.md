@@ -19,7 +19,7 @@ Application starts on localhost:4200
 - If running the application throws
 
 ERROR in ./src/polyfills.ts
-Module not found: Error: Can't resolve 'web-animations-js' in 'C:\Users\lauti\Desktop\vo\src'
+Module not found: Error: Can't resolve 'web-animations-js' in 'C:\...\src'
  @ ./src/polyfills.ts 62:0-27
  @ multi ./src/polyfills.ts 
  
