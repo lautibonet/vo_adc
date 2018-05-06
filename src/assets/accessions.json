@@ -1,0 +1,36 @@
+[
+  {
+    "id": "Plaza Guemes Nro 60 e/ 19 y 38",
+    "automatic_debit": false,
+    "digital_invoice": true,
+    "address": "Plaza Guemes Nro 60 e/ 19 y 38",
+    "billing_address": "Plaza Guemes Nro 60 e/ 19 y 38",
+    "status": "ACTIVO",
+    "type": "Tarifa 3",
+    "identifier": "1897/0-9406-0001405/3",
+    "debt": 7000,
+    "owner_name": "Grecia Camila Belen Colmenares",
+    "debit_type": "onlinePayment",
+    "debit_type_display_name": "Tarjeta de Credito",
+    "online_payment_method": "Mastercard",
+    "bank": null,
+    "cbu": null
+  },
+  {
+    "id": "Dr. Nicolas Repetto 1256",
+    "automatic_debit": true,
+    "digital_invoice": false,
+    "address": "Dr. Nicolas Repetto 1256",
+    "billing_address": "Dr. Nicolas Repetto 1256",
+    "status": "BAJA",
+    "type": "Tarifa 1",
+    "identifier": "0-213111033",
+    "debt": 7000,
+    "owner_name": "Lautaro Bonet",
+    "debit_type": "directDebit",
+    "debit_type_display_name": "Cuenta Bancaria",
+    "online_payment_method": null,
+    "bank": "Banco Nacion",
+    "cbu": "28505909/01"
+  }
+]

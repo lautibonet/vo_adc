@@ -1,0 +1,51 @@
+<!-- TABLA DE RECIBOS DESKTOP -->
+<div class="row hide-desktop">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <md-select [(ngModel)]="selectedUser" name="selectedUser" placeholder="Tituar" class="summary-select-mobile" (change)="onSelectChange()">
+      <md-option [value]="allOwnersSummary">{{'dashboard.summary.allowners' | translate}}</md-option>
+      <md-option *ngFor="let userSummary of userSummaries" [value]="userSummary">
+        {{userSummary.owner_name}}
+      </md-option>
+    </md-select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <table class="table summary-list-desktop">
+      <thead>
+        <tr>
+          <th class="hide-mobile" width="38%">{{'service.owner' | translate}}</th>
+          <th class="align-center">{{'labels.services' | translate}}</th>
+          <th class="align-center hide-mobile">{{'labels.bills' | translate}}</th>
+          <th class="align-center error"><md-icon class="align-vertical">description</md-icon> {{'labels.bills.overdue' | translate}}</th>
+          <th class="align-center">{{'bill.balance' | translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userSummary of userSummaries" class="hide-mobile" [@expandCollapse]="tableShown" >
+          <ng-template [ngIf]="selectedUser.owner_id == -1">
+            <td class="hide-mobile">{{userSummary.owner_name}}</td>
+            <td class="align-center">{{userSummary.services_count}}</td>
+            <td class="align-center hide-mobile">{{userSummary.receipts_count}}</td>
+            <td class="align-center">{{userSummary.overdue_receipts_count}}</td>
+            <td class="align-center">{{userSummary.total_debt | currencyFormat}}</td>
+          </ng-template>
+        </tr>
+        <tr class="summary-select-desktop" [ngClass]="{'padded-top': (tableShown == 'open') && (selectedUser.owner_id == -1)}">
+          <td class="hide-mobile">
+            <md-select [(ngModel)]="selectedUser" name="selectedUser" class="table-select" style="display: block;" placeholder="Tituar" (change)="onSelectChange()">
+              <md-option [value]="allOwnersSummary">{{'dashboard.summary.allowners' | translate}}</md-option>
+              <md-option *ngFor="let userSummary of userSummaries" [value]="userSummary">
+                {{userSummary.owner_name}}
+              </md-option>
+            </md-select>
+          </td>
+          <td class="align-center">{{selectedUser.services_count}}</td>
+          <td class="align-center hide-mobile">{{selectedUser.receipts_count}}</td>
+          <td class="align-center">{{selectedUser.overdue_receipts_count}}</td>
+          <td class="align-center">{{selectedUser.total_debt | currencyFormat}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

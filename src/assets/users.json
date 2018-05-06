@@ -1,0 +1,38 @@
+[
+  {
+    "id":1,
+    "name":"Lautaro",
+    "lastname":"Bonet",
+    "fullname":"Lautaro Bonet",
+    "documentNumber":"37384933",
+    "documentType":"DNI",
+    "documentTypeCode":"1"
+  },
+  {
+    "id":2,
+    "name":"Martin",
+    "lastname":"Campano",
+    "fullname":"Martin Campano",
+    "documentNumber":"26010567",
+    "documentType":"DNI",
+    "documentTypeCode":"1"
+  },
+  {
+    "id":3,
+    "name":"Grecia Camila Belen",
+    "lastname":"Colmenares",
+    "fullname":"Grecia Camila Belen Colmenares",
+    "documentNumber":"39116122",
+    "documentType":"DNI",
+    "documentTypeCode":"1"
+  },
+  {
+    "id":4,
+    "name":"Gustavo",
+    "lastname":"Garcia",
+    "fullname":"Gustavo Garcia",
+    "documentNumber":"11111111",
+    "documentType":"DNI",
+    "documentTypeCode":"1"
+  }
+]

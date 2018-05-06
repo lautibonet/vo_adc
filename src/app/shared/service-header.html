@@ -1,0 +1,20 @@
+<div class="service-header">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 service-number">
+      <h3>Servicio N° <b>{{service.identifier}}</b></h3>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" *ngIf="showStatus">
+      <div class="usos-estado">
+        <div class="grey-background">
+          <b>Tipo:</b> {{service.type}}
+        </div>
+        <div class="grey-background social-rate" *ngIf="service.social_rate">
+          <span></span>Tarifa Social
+        </div>
+        <div class="status" [ngClass]="{'down': service.status != 1, 'active': service.status == 1}">
+          <mark></mark>{{(service.status == 1)? "Activo" : "Baja"}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

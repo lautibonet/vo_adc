@@ -1,0 +1,172 @@
+
+<div class="row">
+
+    <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+          <h1>Datos Personales</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+          <!-- <md-progress-bar mode="indeterminate" *ngIf="!services"></md-progress-bar> -->
+          <md-card class="edit-profile-card">
+            <div class="row collapse-header">
+              <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <h3 class="no-margin">Modificar Datos Personales</h3>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 align-right">
+                <button md-button class="collapse-btn" (click)='showOrHide()'>
+                  <md-icon *ngIf="collapsed == 'close'">expand_more</md-icon>
+                  <md-icon *ngIf="collapsed == 'open'">expand_less</md-icon>
+                </button>
+              </div>
+            </div>
+
+            <form name="edit-profile-form" #editProfileForm="ngForm" [@expandCollapse]="collapsed">
+
+              <div class="row">
+                <div class="col-xs-5 col-sm-4 col-md-2 col-lg-2">
+                    <md-select [(ngModel)]="model.documentType" #docType="ngModel" name="documentType" placeholder="Tipo Documento" required="true">
+                      <md-option *ngFor="let documentTypeOption of documentTypeOptions" [value]="documentTypeOption">
+                        {{documentTypeOption.display_name}}
+                      </md-option>
+                    </md-select>
+                </div>
+                <div class="col-xs-7 col-sm-8 col-md-4 col-lg-4">
+                    <md-input-container >
+                      <input mdInput [(ngModel)]="model.documentNumber" name="documentNumber" placeholder="Número de Documento" maxlength="11" required="true" />
+                    </md-input-container>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-input-container >
+                      <input mdInput #email="ngModel" [(ngModel)]="model.email" name="email" placeholder="Correo Electrónico" [pattern]="emailPattern" required/>
+                    </md-input-container>
+                    <div *ngIf="!email.pristine && email.errors && email.errors.required" class="error">
+                      <small>Por favor ingrese el email</small>
+                    </div>
+                    <div *ngIf="!email.valid && !email.pristine" class="error">
+                      <small>Por favor ingrese un email válido</small>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-input-container >
+                      <input mdInput #country="ngModel" [(ngModel)]="model.country" name="country" placeholder="País de Origen" required />
+                    </md-input-container>
+                    <div *ngIf="!country.pristine && country.errors && country.errors.required" class="error">
+                      <small>Por favor indique país de origen</small>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-input-container >
+                      <input mdInput #name="ngModel" [(ngModel)]="model.name" name="name" placeholder="Nombre" required/>
+                    </md-input-container>
+                    <div *ngIf="!name.pristine && name.errors && name.errors.required" class="error">
+                      <small>Por favor ingrese el nombre</small>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-input-container >
+                      <input mdInput #apellido="ngModel" [(ngModel)]="model.lastname" name="lastname" placeholder="Apellido" required/>
+                    </md-input-container>
+                    <div *ngIf="!apellido.pristine && apellido.errors && apellido.errors.required" class="error">
+                      <small>Por favor ingrese el apellido</small>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-input-container >
+                      <input mdInput [mdDatepicker]="picker" #birthdate="ngModel" [(ngModel)]="model.birthdate" name="birthdate" placeholder="Fecha de Nacimiento" required>
+                      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                    </md-input-container>
+                    <md-datepicker #picker></md-datepicker>
+                    <div *ngIf="!birthdate.pristine && birthdate.errors && birthdate.errors.required" class="error">
+                      <small>Por favor ingrese la fecha de nacimiento</small>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-select #sex="ngModel" [(ngModel)]="model.sex" name="sex" placeholder="Sexo" required>
+                      <md-option *ngFor="let sexOption of sexOptions" [value]="sexOption.id">
+                        {{sexOption.display_name}}
+                      </md-option>
+                    </md-select>
+                    <div *ngIf="sex.touched && sex.errors && sex.errors.required" class="error">
+                      <small>Por favor indique sexo</small>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <md-input-container >
+                      <input mdInput #address="ngModel" [(ngModel)]="model.address" name="address" placeholder="Dirección" required />
+                    </md-input-container>
+                    <div *ngIf="!address.pristine && address.errors && address.errors.required" class="error">
+                      <small>La dirección es requerida</small>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-input-container >
+                      <input mdInput #celphone="ngModel" [(ngModel)]="model.celphone" name="celphone" placeholder="Celular" required/>
+                    </md-input-container>
+                    <div *ngIf="!celphone.pristine && celphone.errors && celphone.errors.required" class="error">
+                      <small>Por favor ingrese un nro de celular</small>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <md-input-container >
+                      <input mdInput #telephone="ngModel" [(ngModel)]="model.telephone" name="telephone" placeholder="Teléfono" required/>
+                    </md-input-container>
+                    <div *ngIf="!telephone.pristine && telephone.errors && telephone.errors.required" class="error">
+                      <small>Por favor ingrese un nro de teléfono</small>
+                    </div>
+                </div>
+              </div>
+
+              <footer>
+                <div class="row is-table-row-mobile">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <small>Ingrese la contraseña para guardar los datos</small>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <md-input-container >
+                          <input mdInput #password="ngModel" [(ngModel)]="model.password" name="password" placeholder="Contraseña Actual" [type]="passwordType" required />
+                          <button md-button mdSuffix type="button" class="show-hide-password align-right" name="showPassword" (click)="toggleShow()"><md-icon>remove_red_eye</md-icon></button>
+                        </md-input-container>
+                        <div *ngIf="!password.pristine && password.errors && password.errors.required" class="error">
+                          <small>La contraseña es requerida</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right" style="line-height: 68px;">
+                    <button md-raised-button type="submit" class="primary-button" [disabled]="editProfileForm.invalid">GUARDAR</button>
+                  </div>
+                </div>
+              </footer>
+
+            </form>
+
+          </md-card>
+
+        </div>
+      </div>
+
+    </article>
+
+  </div>

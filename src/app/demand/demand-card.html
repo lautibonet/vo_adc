@@ -1,0 +1,76 @@
+<div class="row">
+
+    <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+          <md-card>
+            <div class="card-button-header">
+              <div class="row">
+                <!-- ACCIONES -->
+                <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
+                  <button md-button [mdMenuTriggerFor]="acciones" class="menu-button align-vertical">
+                    <md-icon class="align-vertical align-left">more_vert</md-icon> ACCIONES
+                  </button>
+                  <md-menu #acciones="mdMenu" xPosition="after" yPosition="below" [overlapTrigger]="false" >
+                  </md-menu>
+                </div>
+                <!-- DETALLE -->
+                <div class="col-xs-2 col-sm-4 col-md-6 col-lg-6 align-right">
+                  <button md-button (click)='showDetails()'><span class="hide-mobile">DETALLE</span>
+                    <md-icon *ngIf="detailsShown == 'close'">expand_more</md-icon>
+                    <md-icon *ngIf="detailsShown == 'open'">expand_less</md-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <demand-header-info [demand]="demand"></demand-header-info>
+
+            <div class="service-detail" [@expandCollapse]="detailsShown">
+              <div class="row item">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <h4 class="no-margin">Autor</h4>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <h4 class="no-margin align-right">Canal de Ingreso</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <h4 class="no-margin"><b>{{demand.author}}</b></h4>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+                      <label class="no-margin">{{demand.channel}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4>Historial de estados</h4>
+
+              <demand-status-table [statusHistory]="demand.status_history"></demand-status-table>
+
+              <footer>
+                <div class="row is-table-row">
+                  <div class="col-xs-9 col-sm-9 col-md-8 col-ls-8">
+                    <p class="no-margin">Si el problema no se ha solucionado presione en Reiterar, en caso
+                      contrario haga click <a>aquí</a>. </p>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 col-md-4 col-ls-4 align-right">
+                    <button md-raised-button class="primary-button">REITERAR</button>
+                  </div>
+                </div>
+              </footer>
+
+            </div>
+
+          </md-card>
+
+        </div>
+      </div>
+
+    </article>
+
+  </div>

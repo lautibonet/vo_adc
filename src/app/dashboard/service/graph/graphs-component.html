@@ -1,0 +1,21 @@
+
+
+<div class="detalle-consumo-container">
+  <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+            <div class="consumo-header">
+              <h3 class="no-margin">Detalle de Consumos</h3>
+              <md-select [(ngModel)]="selectedGraph" class="pull-right" (change)="selectDefaultPeriod()">
+                <md-option *ngFor="let graph of graphs" [value]="graph">
+                  {{ graph.data[0].label }}
+                </md-option>
+              </md-select>
+            </div>
+            <span *ngFor="let graph of graphs">
+              <graph-directive [graph]="graph" [selectedPeriod]="selectedPeriod" (onChartClick)="selectPeriod($event)" *ngIf="isSelectedGraph(graph)"></graph-directive>
+            </span>
+        </div>
+        <period-detail [period]="selectedPeriod"></period-detail>
+  </div>
+
+</div>

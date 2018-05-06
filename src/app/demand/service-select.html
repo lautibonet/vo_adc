@@ -1,0 +1,63 @@
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+        <div class="card-image"></div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+        <md-progress-bar mode="indeterminate" *ngIf="!services"></md-progress-bar>
+        <md-card>
+          <h3>Seleccione de la lista el suministro con problema</h3>
+
+          <md-radio-group [(ngModel)]="model.service" name="selectedService" required>
+            <!-- TABLA DE SERVICIOS DESKTOP -->
+            <table class="table services-table-desktop" *ngIf="services">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Suminsitro</th>
+                  <th>Titular</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let service of services">
+                  <td class="align-center"><md-radio-button [disableRipple]="true" [value]="service"></md-radio-button></td>
+                  <td>{{service.identifier}} | {{service.id}}</td>
+                  <td>{{service.owner_name}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- FIN TABLA DE SERVICIOS DESKTOP -->
+
+            <!-- TABLA DE SERVICIOS MOBILE -->
+            <div *ngFor="let service of services" class="services-table-mobile">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="row">
+                    <div class="col-xs-1 col-sm-2 col-md-2 col-lg-2">
+                      <md-radio-button [disableRipple]="true" [value]="service"></md-radio-button>
+                    </div>
+                    <div class="col-xs-11 col-sm-10 col-md-10 col-lg-10">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <label class="row-data">{{service.address}}</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <label>Titular</label> <label class="row-data">{{service.owner_name}}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- FIN TABLA DE SERVICIOS MOBILE -->
+
+          </md-radio-group>
+        </md-card>
+      </div>
+    </div>
+  </article>
+</div>

@@ -1,0 +1,112 @@
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+        <md-card>
+          <div class="row item">
+            <div class="col-xs-8 col-sm-8 col-md-9 col-ls-9">
+              <h4 class="no-margin">¿Es el único suministro sin luz en su cuadra/edificio?</h4>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-ls-3 align-right">
+              <md-radio-group [(ngModel)]="model.onlyCustomer" name="onlyCustomer" (change)="onlyCustomerChanged()" required>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="true">Si</md-radio-button>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="false">No</md-radio-button>
+                  </div>
+                </div>
+              </md-radio-group>
+            </div>
+          </div>
+          <div class="row item" *ngIf="model.onlyCustomer == 'true'">
+            <div class="col-xs-8 col-sm-8 col-md-9 col-ls-9">
+              <h4 class="no-margin">¿Existe en el tablero principal alguna llave baja? </h4>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-ls-3 align-right">
+              <md-radio-group [(ngModel)]="model.lowSwitch" name="lowSwitch" (change)="lowSwitchChanged()" required>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="true">Si</md-radio-button>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="false">No</md-radio-button>
+                  </div>
+                </div>
+              </md-radio-group>
+            </div>
+          </div>
+          <div class="row item" *ngIf="model.lowSwitch == 'true'">
+            <div class="col-xs-8 col-sm-8 col-md-9 col-ls-9">
+              <h4 class="no-margin">Por favor, proceda a subirla. ¿La llave volvió a bajarse en forma automática?</h4>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-ls-3 align-right">
+              <md-radio-group [(ngModel)]="model.wentBackDown" name="wentBackDown" (change)="wentBackDownChanged()" required>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="true">Si</md-radio-button>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="false">No</md-radio-button>
+                  </div>
+                </div>
+              </md-radio-group>
+            </div>
+          </div>
+          <div class="row item" *ngIf="model.lowSwitch == 'false' || model.wentBackDown == 'false'">
+            <div class="col-xs-8 col-sm-8 col-md-9 col-ls-9">
+              <h4 class="no-margin">Por favor, indique si en su instalación existe un pilar.</h4>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-ls-3 align-right">
+              <md-radio-group [(ngModel)]="model.pillarExists" name="pillarExists" (change)="pillarExistsChanged()" required>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="true">Si</md-radio-button>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="false">No</md-radio-button>
+                  </div>
+                </div>
+              </md-radio-group>
+            </div>
+          </div>
+          <div class="row item" *ngIf="model.pillarExists == 'true'">
+            <div class="col-xs-8 col-sm-8 col-md-9 col-ls-9">
+              <h4 class="no-margin">¿Se encuentra en el tablero la llave baja?</h4>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-ls-3 align-right">
+              <md-radio-group [(ngModel)]="model.lowSwitchPillar" name="lowSwitchPillar" (change)="lowSwitchPillarChanged()" required>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="true">Si</md-radio-button>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="false">No</md-radio-button>
+                  </div>
+                </div>
+              </md-radio-group>
+            </div>
+          </div>
+          <div class="row item" *ngIf="model.lowSwitchPillar == 'true'">
+            <div class="col-xs-8 col-sm-8 col-md-9 col-ls-9">
+              <h4 class="no-margin">Por favor, proceda a subirla. ¿La llave volvió a bajarse en forma automática?</h4>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-ls-3 align-right">
+              <md-radio-group [(ngModel)]="model.wentBackDownPillar" name="wentBackDownPillar" (change)="wentBackDownPillarChanged()" required>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="true">Si</md-radio-button>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <md-radio-button [disableRipple]="true" value="false">No</md-radio-button>
+                  </div>
+                </div>
+              </md-radio-group>
+            </div>
+          </div>
+        </md-card>
+      </div>
+    </div>
+  </article>
+</div>

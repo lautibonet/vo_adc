@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "display_name": "visa",
+    "img_path": "../assets/images/visa_logo.png"
+  },{
+    "id": 2,
+    "display_name": "mastercard",
+    "img_path": "../assets/images/master_logo.png"
+  },{
+    "id": 3,
+    "display_name": "naranja",
+    "img_path": "../assets/images/naranja_logo.png"
+  },{
+    "id": 4,
+    "display_name": "nativa",
+    "img_path": "../assets/images/nativa_logo.png"
+  }
+]

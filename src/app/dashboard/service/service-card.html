@@ -1,0 +1,140 @@
+<!-- <div class="container"> -->
+  <div class="row">
+
+    <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+          <h1 class="no-margin">{{service.id}}</h1>
+          <div class="shared-wrapper">
+            <md-chip-list *ngIf="isDelegated">
+              <label>{{'service.sharedby' | translate}}:</label>
+              <md-chip>{{service.owner_name}}</md-chip>
+            </md-chip-list>
+            <md-chip-list *ngIf="!isDelegated && service.shared_with != undefined && service.shared_with.length > 0">
+              <label>{{'service.sharedto' | translate}}:</label>
+              <md-chip>{{service.shared_with[0]}}</md-chip>
+              <md-chip *ngIf="service.shared_with.length-1 > 0" [mdTooltip]="createDelegatesTooltip()">+{{service.shared_with.length-1}}</md-chip>
+            </md-chip-list>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+          <md-progress-bar mode="indeterminate" *ngIf="detailsShown == 'open' && (!receipts || !graphs || !periods)"></md-progress-bar>
+
+          <md-card>
+            <div class="card-button-header">
+              <div class="row">
+                <!-- ACCIONES -->
+                <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 ">
+                  <button md-button [mdMenuTriggerFor]="acciones" class="menu-button align-vertical">
+                    <md-icon class="align-vertical align-left">more_vert</md-icon>{{'common.button.actions' | translate}}
+                  </button>
+                  <md-menu #acciones="mdMenu" xPosition="after" yPosition="below" [overlapTrigger]="false">
+                    <button md-menu-item routerLink="/debit/cancel" routerLinkActive="active" *ngIf="service.automatic_debit">Baja de débito automático</button>
+                    <button md-menu-item routerLink="/debit" routerLinkActive="active" *ngIf="!service.automatic_debit">Adherir a débito automático</button>
+                    <button md-menu-item routerLink="/invoice/setup" routerLinkActive="active" *ngIf="!service.digital_invoice">Adherir a factura digital</button>
+                    <button md-menu-item routerLink="/delegate/{{service.identifier.split('/').join('%2F')}}" routerLinkActive="active" *ngIf="!isDelegated">Delegar Servicio</button>
+                    <button md-menu-item>Realizar reclamo</button>
+                  </md-menu>
+                  <button md-button [mdMenuTriggerFor]="tramites" class="menu-button align-vertical">
+                    <md-icon class="align-vertical align-left">insert_drive_file</md-icon>{{'common.button.procedures' | translate}}
+                  </button>
+                  <md-menu #tramites="mdMenu" xPosition="after" yPosition="below" [overlapTrigger]="false">
+                    <button md-menu-item>Dar de baja</button>
+                  </md-menu>
+                </div>
+                <div class="col-xs-2 col-sm-4 col-md-6 col-lg-6 align-right">
+                  <button md-button (click)='showDetails()' class="expand-detail-btn"><span class="hide-mobile">{{'common.button.detail' | translate}}</span>
+                    <md-icon *ngIf="detailsShown == 'close'">expand_more</md-icon>
+                    <md-icon *ngIf="detailsShown == 'open'">expand_less</md-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <service-header [service]="service"></service-header>
+              <!-- [ngClass]="{'expanded': detailsShown}" -->
+            <div class="service-detail" [@expandCollapse]="detailsShown" >
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-header">
+                    <div class="row">
+                      <!-- ADHESIONES PARA VERSION MOBILE -->
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hide-desktop" style="margin-bottom: 18px;">
+                        <accessions-buttons [service]="service"></accessions-buttons>
+                      </div>
+                      <!-- FIN ADHESIONES PARA VERSION MOBILE -->
+
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-header-row">
+                            <label style="margin-right: 8px;">{{'service.account_owner' | translate}}</label>
+                            <h4 class="no-margin">{{service.owner_name}}</h4>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-header-row">
+                            <label style="margin-right: 12px;">{{'service.billing_address' | translate}}</label>
+                            <h4 class="no-margin">{{service.billing_address}}</h4>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- ADHESIONES PARA VERSION DESKTOP -->
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 hide-mobile">
+                        <accessions-buttons [service]="service"></accessions-buttons>
+                      </div>
+                      <!-- FIN ADHESIONES PARA VERSION DESKTOP -->
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <hr class="divider"/>
+                </div>
+
+                <receipts-dashboard-list [receipts]="receipts" *ngIf="receipts && graphs"></receipts-dashboard-list>
+            </div>
+
+            <footer class="card-footer">
+              <!-- LABEL ADHERIDO A DEBITO MOBILE -->
+              <div class="row label-adherido-da-mobile" style="margin-top: 12px;">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <button class="bordered" *ngIf="service.automatic_debit">{{'service.attached_to_ad' | translate}}</button>
+                  <button md-button routerLink="/debit" routerLinkActive="active" class="bordered grey" *ngIf="!service.automatic_debit" >{{'service.attach_to_ad' | translate}}</button>
+                </div>
+              </div>
+              <!-- FIN LABEL ADHERIDO A DEBITO MOBILE -->
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 footer-group">
+                  <h2>{{'service.total_to_pay' | translate}} <b>{{calcularDeuda() | currencyFormat}}</b>
+                    <button *ngIf="service.automatic_debit" class="bordered label-adherido-da-desktop">{{'service.attached_to_ad' | translate}}</button>
+                    <button *ngIf="!service.automatic_debit" md-button routerLink="/debit" routerLinkActive="active" class="bordered grey label-adherido-da-desktop">{{'service.attach_to_ad' | translate}}</button>
+                  </h2>
+
+                  <div class="group-btn">
+                    <button md-raised-button *ngIf="overdueReceipts().length > 0" class="overdue-button" ><md-icon>description</md-icon>{{pad(overdueReceipts().length)}}</button>
+                    <button md-raised-button routerLink="/payment" routerLinkActive="active" class="primary-button"><md-icon>credit_card</md-icon>PAGAR</button>
+                  </div>
+                </div>
+
+              </div>
+            </footer>
+
+            <div class="service-detail" [@expandCollapse]="detailsShown" >
+              <hr class="divider"/>
+
+              <graphs [graphs]="graphs" [periods]="periods" *ngIf="receipts && graphs && periods"></graphs>
+
+            </div>
+
+          </md-card>
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+<!-- </div> -->

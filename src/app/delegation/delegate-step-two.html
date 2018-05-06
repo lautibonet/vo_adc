@@ -1,0 +1,80 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+                <h1>Delegar Servicio</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <md-progress-bar mode="indeterminate" *ngIf="!services"></md-progress-bar>
+                <md-card class="delegate-card">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h3 class="no-margin">Datos de la persona a delegar</h3>
+                    </div>
+                  </div>
+
+                  <div class="row delegate-info">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <md-input-container>
+                        <input mdInput [(ngModel)]="model.fullname" name="fullname" placeholder="Nombre Completo" readonly required/>
+                      </md-input-container>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <md-input-container>
+                        <input mdInput [(ngModel)]="model.documentNumber" name="documentNumber" placeholder="Número de Documento" readonly required/>
+                      </md-input-container>
+                    </div>
+                  </div>
+
+                  <div *ngIf="model.delegateOption != 0 && delegatedServices" class="delegated-services">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="no-margin">Suministros delegados a {{model.fullname}}</h3>
+                      </div>
+                    </div>
+
+                    <services-list [services]="delegatedServices" [allDisabled]="true" *ngIf="delegatedServices"></services-list>
+                  </div>
+
+                  <div *ngIf="services" class="available-services">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="no-margin">Suministros disponibles</h3>
+                      </div>
+                    </div>
+
+                    <services-list [services]="services"></services-list>
+                  </div>
+
+                  <footer>
+                    <div class="row">
+                      <div class="col-xs-8 col-sm-8 col-md-10 col-lg-10">
+                        <md-checkbox [disableRipple]="true" #termsAndConditions="ngModel" [(ngModel)]="model.termsAndConditions" name="termsAndConditions" color="primary" required>
+                          He leído y acepto los <b><a>términos y condiciones</a></b>
+                        </md-checkbox>
+                      </div>
+                      <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 align-right">
+                        <button md-raised-button class="primary-button" [disabled]="noServiceSelected() || !termsAndConditions.value">DELEGAR</button>
+                      </div>
+                    </div>
+                  </footer>
+
+                </md-card>
+
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+    </div>
+  </div>
+</div>

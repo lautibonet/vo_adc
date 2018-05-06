@@ -1,0 +1,143 @@
+<!-- TABLA DE RECIBOS DESKTOP -->
+  <table class="table recibos-table-desktop">
+    <thead>
+      <tr>
+        <th>Comprobante N°</th>
+        <th>Tipo Comprobante</th>
+        <th>Concepto</th>
+        <th>Estado</th>
+        <th>Vencimiento</th>
+        <th>Importe</th>
+        <th>Saldo</th>
+        <th class="align-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-receipt [ngForOf]="receipts" >
+        <tr [ngClass]="{'disabled':!receipt.is_payable, 'overdue':isOverdueReceipt(receipt.due_date)}">
+          <td>{{receipt.id}}</td>
+          <td>{{receipt.type}}</td>
+          <td>{{receipt.display_name}}</td>
+          <td>{{receipt.status}}</td>
+          <td>{{receipt.due_date}}</td>
+          <td>{{receipt.amount | currencyFormat}}</td>
+          <td>{{receipt.balance | currencyFormat}}</td>
+          <td class="align-center">
+            <button md-button routerLink="/payment" routerLinkActive="active" [disabled]="!receipt.is_payable" class="pay-button-bills"><md-icon>credit_card</md-icon></button>
+            <button md-button [disabled]="!receipt.is_payable" (click)="viewReceipt()"><md-icon>remove_red_eye</md-icon></button>
+            <button md-button [disabled]="!receipt.is_payable"><md-icon>file_download</md-icon></button>
+          </td>
+        </tr>
+        <tr *ngIf="!receipt.is_payable" class="not-payable-motive">
+          <td colspan="6"><md-icon>warning</md-icon><label>Motivo por el cual no se puede pagar</label></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+  <!-- FIN TABLA DE RECIBOS DESKTOP -->
+
+  <!-- TABLA DE RECIBOS MOBILE -->
+  <div *ngFor="let receipt of receipts" [ngClass]="{'disabled':!receipt.is_payable, 'overdue':isOverdueReceipt(receipt.due_date)}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 recibos-table-mobile">
+    <div class="row">
+      <div class="col-xs-7 col-sm-9 col-md-9 col-lg-9">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label>Comprobante N°</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="header-data">{{receipt.id}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5 col-sm-3 col-md-3 col-lg-3 align-right">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label>Vencimiento</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="header-data">{{receipt.due_date}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label>Tipo</label>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+            <label class="row-data align-right">{{receipt.type}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label>Concepto</label>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+            <label class="row-data align-right">{{receipt.display_name}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label>Estado</label>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+            <label class="row-data align-right">{{receipt.status}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <label>Importe</label>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+            <label class="row-data align-right">{{receipt.amount | currencyFormat}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label>Saldo</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="header-data"><b>{{receipt.balance | currencyFormat}}</b></label>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 button-group align-right">
+        <button md-button [disabled]="!receipt.is_payable" (click)="viewReceipt()"><md-icon>remove_red_eye</md-icon></button>
+        <button md-button [disabled]="!receipt.is_payable"><md-icon>file_download</md-icon></button>
+        <button md-button routerLink="/payment" routerLinkActive="active" [disabled]="!receipt.is_payable" class="pay-button-bills"><md-icon>credit_card</md-icon></button>
+      </div>
+    </div>
+    <div class="row not-payable-motive-mobile" *ngIf="!receipt.is_payable">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
+        <md-icon>warning</md-icon>
+      </div>
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <p>Motivo por que no se puede pagar</p>
+      </div>
+    </div>
+  </div>
+  <!-- FIN TABLA DE RECIBOS DESKTOP -->

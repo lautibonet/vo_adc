@@ -1,0 +1,53 @@
+<table class="table status-history-table-desktop hide-mobile">
+  <thead>
+    <tr>
+      <th width="20%">Fecha y Hora</th>
+      <th>Estado</th>
+      <th>Comentarios</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let status of statusHistory">
+      <td><b>{{status.updated}}</b></td>
+      <td><b>{{status.name}}</b></td>
+      <td>{{status.commentary}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngFor="let status of statusHistory" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 status-history-table-mobile hide-desktop">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Fecha y Hora</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="row-data">{{status.updated}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+          <label>Estado</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+          <label class="row-data align-right">{{status.name}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <label>Comentarios</label>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <label class="header-data">{{status.commentary}}</label>
+    </div>
+  </div>
+</div>

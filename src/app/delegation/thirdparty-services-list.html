@@ -1,0 +1,58 @@
+<!-- TABLA DE SERVICIOS DESKTOP -->
+<table class="table services-table-desktop">
+  <thead>
+    <tr>
+      <th width="60%">Suminsitro</th>
+      <th class="align-center">Vigente desde</th>
+      <th class="align-center">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let service of services">
+      <td>{{service.identifier}} | {{service.id}}</td>
+      <td class="align-center">{{service.delegated_since}}</td>
+      <td class="align-center"><button md-button class="no-background"><h4 class="no-margin">RECHAZAR</h4></button></td>
+    </tr>
+  </tbody>
+</table>
+<!-- FIN TABLA DE SERVICIOS DESKTOP -->
+
+<!-- TABLA DE SERVICIOS MOBILE -->
+<div *ngFor="let service of services" [ngClass]="{'disabled':service.automatic_debit}" class="container services-table-mobile">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Suministro</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="row-data">{{service.id}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Vigente Desde</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="header-data">{{service.delegated_since}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <button md-button><h4 style="line-height: 26px;">RECHAZAR</h4></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN TABLA DE SERVICIOS MOBILE -->

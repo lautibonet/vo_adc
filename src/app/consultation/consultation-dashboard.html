@@ -1,0 +1,44 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+                <h1>Consulta</h1>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <div class="card-image"></div>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <md-card>
+                  <div class="row is-table-row">
+                    <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                      <h3 class="grey">Realizar nueva consulta</h3>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 align-right">
+                      <button md-raised-button class="primary-button">NUEVA CONSULTA</button>
+                    </div>
+                  </div>
+
+                </md-card>
+
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+
+        <consultation-card *ngFor="let consultation of consultations" [consultation]="consultation"></consultation-card>
+
+    </div>
+  </div>
+</div>

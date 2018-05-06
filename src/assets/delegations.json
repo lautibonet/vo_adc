@@ -1,0 +1,18 @@
+[
+  {
+    "identifier":"1895/0-9306-0004505/2",
+    "delegated_fullname":"Martin Campano",
+    "delegated_document_number":26010567,
+    "delegated_document_type":"DNI",
+    "delegated_document_type_code":"1",
+    "start_date":"24/06/2017"
+  },
+  {
+    "identifier":"1895/0-9306-0004505/2",
+    "delegated_fullname":"Gustavo Garcia",
+    "delegated_document_number":11111111,
+    "delegated_document_type":"DNI",
+    "delegated_document_type_code":"1",
+    "start_date":"21/05/2017"
+  }
+]

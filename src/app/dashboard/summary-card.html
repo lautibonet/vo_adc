@@ -1,0 +1,49 @@
+<div class="row">
+
+  <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+        <h1>{{'dashboard.summary' | translate}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+        <md-progress-bar mode="indeterminate" *ngIf="!userSummaries"></md-progress-bar>
+
+        <md-card>
+          <div class="card-button-header" [ngClass]="{'single-row-collapsed': !userSummaries}">
+            <div class="row">
+              <!-- ACCIONES -->
+              <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
+                <button md-button [mdMenuTriggerFor]="acciones" class="menu-button align-vertical">
+                  <md-icon class="align-vertical align-left">more_vert</md-icon>{{'common.button.actions' | translate}}
+                </button>
+                <md-menu #acciones="mdMenu" xPosition="after" yPosition="below" [overlapTrigger]="false">
+                </md-menu>
+                <button md-button [mdMenuTriggerFor]="tramites" class="menu-button align-vertical">
+                  <md-icon class="align-vertical align-left">insert_drive_file</md-icon>{{'common.button.procedures' | translate}}
+                </button>
+                <md-menu #tramites="mdMenu" xPosition="after" yPosition="below" [overlapTrigger]="false">
+                </md-menu>
+              </div>
+              <!-- DETALLE -->
+              <div class="col-xs-2 col-sm-4 col-md-6 col-lg-6 align-right hide-mobile">
+                <button md-button (click)='showDetails()' class="expand-detail-btn">
+                  <span class="hide-mobile">{{'common.button.detail' | translate}}</span>
+                  <md-icon *ngIf="detailsShown == 'close'">expand_more</md-icon>
+                  <md-icon *ngIf="detailsShown == 'open'">expand_less</md-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <summary-list [userSummaries]="userSummaries" [tableShown]="detailsShown" (ownerIdFilter)="filter($event)" *ngIf="userSummaries"></summary-list>
+
+        </md-card>
+      </div>
+
+    </div>
+
+  </article>
+
+</div>

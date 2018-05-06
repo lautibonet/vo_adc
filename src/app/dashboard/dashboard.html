@@ -1,0 +1,43 @@
+<notification-alert></notification-alert>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+      <loading-services-message *ngIf="!services"></loading-services-message>
+
+      <div *ngIf="services && services.length > 4" class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <md-card class="search-card">
+            <div class="row">
+              <!-- <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+
+              </div> -->
+              <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                <md-input-container floatPlaceholder="never">
+                  <md-icon mdPrefix>search</md-icon>
+                  <input mdInput [(ngModel)]="searchValue" placeholder="Busca por servicio, titular o direccion">
+                </md-input-container>
+              </div>
+            </div>
+
+          </md-card>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <summary-card (ownerIdFilter)="filter($event)" *ngIf="services && hasDelegatedServices"></summary-card>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ng-template ngFor let-service [ngForOf]="services | serviceFilter:searchValue" let-idx="index">
+              <service-card [service]="service" [expanded]="idx == 0 && !hasDelegatedServices" *ngIf="ownerIdFilter == -1 || service.owner_id == ownerIdFilter"></service-card>
+              <!-- *ngFor="let service of services | serviceFilter:searchValue; let idx = index" -->
+            </ng-template>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

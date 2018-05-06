@@ -1,0 +1,30 @@
+<div *ngIf="period" class="col-xs-12 col-sm-12 col-md-5 col-lg-5 detalle-consumo">
+  <div class="consumo-header">
+    <h3 class="no-margin">Detalles del Período {{period.description}}</h3>
+  </div>
+  <div class="period-detail">
+    <div class="period-dates">
+      <div class="start-date">
+        <label>Inicia Período</label>
+        <span class="bordered">{{period.start_date}}</span>
+      </div>
+      <div class="end-date">
+        <label>Finaliza Período</label>
+        <span class="bordered">{{period.end_date}}</span>
+      </div>
+    </div>
+    <div class="period-data-list container-fluid">
+      <div *ngFor="let data of period.data" class="row period-data-row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <label style="display: block;">{{data.label}}</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <span>{{data.value}} {{data.unit}}</span>
+        </div>
+      </div>
+  </div>
+
+
+  </div>
+
+</div>

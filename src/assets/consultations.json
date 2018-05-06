@@ -1,0 +1,17 @@
+[
+	{
+		"id":234567,
+		"user_id":1,
+		"type":"Consulta Comercial",
+		"status":"En proceso",
+		"created":"05/28/2017 06:50:03 PM",
+		"updated":"05/28/2017 06:50:03 PM",
+		"target":"0020-00114615 - 55 Nº 378 PA 1900 LA PLATA",
+		"author":"Lautaro Bonet",
+		"channel":"Telefonico",
+		"history":[
+			{"title":"Respuesta", "type_code":2 , "updated":"05/28/2017 06:49:04 PM", "content":"Lorem ipsum dolor sit amet, ferri expetendis ut sea, deserunt senserit rationibus te vis. No mundi denique comprehensam eam, ea vix impedit minimum. Nec adolescens delicatissimi eu. Est aliquip evertitur scribentur ei. Ut pri duis iisque, et mea brute nominavi constituto."},
+			{"title":"Consulta", "type_code":1, "updated":"05/28/2017 06:50:03 PM", "content":"Lorem ipsum dolor sit amet, ferri expetendis ut sea, deserunt senserit rationibus te vis. No mundi denique comprehensam eam, ea vix impedit minimum. Nec adolescens delicatissimi eu. Est aliquip evertitur scribentur ei. Ut pri duis iisque, et mea brute nominavi constituto."}
+		]
+	}
+]

@@ -1,0 +1,38 @@
+{
+	"common.button.close": "CERRAR",
+	"common.button.actions": "ACCIONES",
+	"common.button.procedures": "TRÁMITES",
+	"common.button.detail": "DETALLE",
+	"common.button.pay": "PAGAR",
+	"common.button.more": "VER MÁS",
+
+	"labels.service": "servicio",
+	"labels.services": "Servicios",
+	"labels.service_number": "Servicio N°",
+	"labels.bill": "Factura",
+	"labels.bills": "Facturas",
+	"labels.bills.overdue": "Vencidas",
+	"labels.pay": "Pagar",
+
+	"service.owner": "Titular",
+	"service.account_owner": "Titular de Cuenta",
+	"service.billing_address": "Dirección Postal",
+	"service.total_to_pay": "Total a Pagar",
+	"service.sharedby": "Compartido por",
+	"service.sharedto": "Compartido con",
+	"service.social_rate": "Tarifa Social",
+	"service.type": "Tipo",
+	"service.attach_to_ad": "ADHERIR A DÉBITO AUTOMÁTICO",
+	"service.attached_to_ad": "EN DÉBITO AUTOMÁTICO",
+	"service.status.active": "Activo",
+	"service.status.inactive": "Baja",
+
+	"bill.balance": "Saldo",
+	"bill.amount": "Importe",
+	"bill.number": "Comprobante N°",
+	"bill.due_date": "Vencimiento",
+	"bill.concept": "Concepto",
+
+	"dashboard.summary": "Resumen",
+	"dashboard.summary.allowners": "Todos los titulares"
+}

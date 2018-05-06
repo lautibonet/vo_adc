@@ -1,0 +1,11 @@
+<action-bar [actions]="actions" [title]="title"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <loading-services-message *ngIf="!services"></loading-services-message>
+
+      <bill-card [service]="service" [idx]="idx" *ngFor="let service of services; let idx = index"></bill-card>
+    </div>
+  </div>
+</div>

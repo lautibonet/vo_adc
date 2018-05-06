@@ -1,0 +1,112 @@
+[
+  {
+    "id": "0020-00114615",
+    "due_date": "12/01/2017",
+    "display_name": "2017-01",
+    "type": "Factura de energía",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": true,
+    "identifier": "1897/0-9406-0001101/1"
+  },
+  {
+    "id": "0020-00114615",
+    "due_date": "12/02/2017",
+    "display_name": "2017-02",
+    "type": "Factura de energía",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": true,
+    "identifier": "1897/0-9406-0001101/1"
+  },
+  {
+    "id": "0020-00114616",
+    "due_date": "14/12/2017",
+    "display_name": "2017-12",
+    "type": "Factura de energía",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": true,
+    "identifier": "1897/0-9406-0001101/1"
+  },
+  {
+    "id": "0020-00114617",
+    "due_date": "13/11/2017",
+    "display_name": "Credito a favor",
+    "type": "Nota de credito",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": false,
+    "identifier": "1897/0-9406-0001101/1"
+  },
+  {
+    "id": "0020-00114615",
+    "due_date": "12/02/2017",
+    "display_name": "Recibo Pendiente",
+    "type": "Nota de debito",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": true,
+    "identifier": "1895/0-9306-0004505/2"
+  },
+  {
+    "id": "0020-00114616",
+    "due_date": "14/12/2017",
+    "display_name": "Recibo Pendiente",
+    "type": "Nota de debito",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": true,
+    "identifier": "1895/0-9306-0004505/2"
+  },
+  {
+    "id": "0020-00114617",
+    "due_date": "13/11/2017",
+    "display_name": "Credito a favor",
+    "type": "Nota de credito",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": false,
+    "identifier": "1895/0-9306-0004505/2"
+  },
+  {
+    "id": "0020-00114615",
+    "due_date": "12/02/2017",
+    "display_name": "Recibo Pendiente",
+    "type": "Nota de debito",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": true,
+    "identifier": "1895/0-9306-0004405/1"
+  },
+  {
+    "id": "0020-00114616",
+    "due_date": "14/12/2017",
+    "display_name": "Recibo Pendiente",
+    "type": "Nota de debito",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": true,
+    "identifier": "1895/0-9306-0004405/1"
+  },
+  {
+    "id": "0020-00114617",
+    "due_date": "13/11/2017",
+    "display_name": "Credito a favor",
+    "type": "Nota de credito",
+    "status": "Pendiente",
+    "amount": 3340,
+    "balance": 3500,
+    "is_payable": false,
+    "identifier": "1895/0-9306-0004405/1"
+  }
+]

@@ -1,0 +1,142 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+                <h1>Delegar Servicio <span *ngIf="serviceFromDashboard">N° {{serviceFromDashboard.identifier}}</span></h1>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <div class="card-image"></div>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <md-card class="delegate-card">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h3 class="no-margin">Ingrese los datos de la persona a delegar</h3>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <label class="info">Antes de compartir la administracion de su servicio deberá solicitarle a la persona el tipo y Número de documento con el cual está registrada en la plataforma.</label>
+                    </div>
+                  </div>
+
+                  <form #delegateForm="ngForm" name="delegate-form" class="delegate-form">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <md-select [(ngModel)]="model.delegateOption" name="delegateOption" required>
+                          <md-option [value]="0">Nuevo Delegado</md-option>
+                          <md-option *ngFor="let delegate of shared_with" [value]="delegate.id">
+                            {{delegate.fullname}}
+                          </md-option>
+                        </md-select>
+                      </div>
+                    </div>
+
+                    <div *ngIf="model.delegateOption == 0">
+                      <div class="row">
+                        <div class="col-xs-5 col-sm-4 col-md-2 col-lg-2">
+                          <md-select [(ngModel)]="model.selectedDocumentType" #docType="ngModel" name="documentType" placeholder="Tipo Documento" floatPlaceholder="never" required>
+                            <md-option *ngFor="let documentTypeOption of documentTypeOptions" [value]="documentTypeOption">
+                              {{documentTypeOption.display_name}}
+                            </md-option>
+                          </md-select>
+                        </div>
+                        <div class="col-xs-7 col-sm-8 col-md-4 col-lg-4">
+                          <md-input-container>
+                            <input mdInput [(ngModel)]="model.documentNumber" #documentNumber="ngModel" name="documentNumber" placeholder="Número de Documento" maxlength="11" required="true" />
+                          </md-input-container>
+                          <div *ngIf="!documentNumber.pristine && documentNumber.errors && documentNumber.errors.required" class="error">
+                            <small>Por favor ingrese el nro de documento</small>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-select #sex="ngModel" [(ngModel)]="model.sex" name="sex" placeholder="Sexo" floatPlaceholder="never" required>
+                            <md-option *ngFor="let sexOption of sexOptions" [value]="sexOption.id">
+                              {{sexOption.display_name}}
+                            </md-option>
+                          </md-select>
+                          <div *ngIf="sex.touched && sex.errors && sex.errors.required" class="error">
+                            <small>Por favor indique sexo</small>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-input-container>
+                            <input mdInput #name="ngModel" [(ngModel)]="model.name" name="name" placeholder="Nombre" required/>
+                          </md-input-container>
+                          <div *ngIf="!name.pristine && name.errors && name.errors.required" class="error">
+                            <small>Por favor ingrese el nombre del delgado</small>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-input-container>
+                            <input mdInput #apellido="ngModel" [(ngModel)]="model.lastname" name="lastname" placeholder="Apellido" required/>
+                          </md-input-container>
+                          <div *ngIf="!apellido.pristine && apellido.errors && apellido.errors.required" class="error">
+                            <small>Por favor ingrese el apellido del delegado</small>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-input-container>
+                            <input mdInput #email="ngModel" [(ngModel)]="model.email" name="email" placeholder="Correo Electrónico" [pattern]="emailPattern" required/>
+                          </md-input-container>
+                          <div *ngIf="!email.pristine && email.errors && email.errors.required" class="error">
+                            <small>Por favor ingrese el email del delegado</small>
+                          </div>
+                          <div *ngIf="!email.valid && !email.pristine" class="error">
+                            <small>Por favor ingrese un email válido</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+
+                  <footer *ngIf="!serviceFromDashboard">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+                        <button md-raised-button class="primary-button" (click)="continue()" [disabled]="delegateForm.invalid">CONTINUAR</button>
+                      </div>
+                    </div>
+                  </footer>
+
+                  <footer *ngIf="serviceFromDashboard">
+                    <div class="row">
+                      <div class="col-xs-8 col-sm-8 col-md-10 col-lg-10">
+                        <md-checkbox [disableRipple]="true" #termsAndConditions="ngModel" [(ngModel)]="model.termsAndConditions" name="termsAndConditions" color="primary" required>
+                          He leído y acepto los <b><a>términos y condiciones</a></b>
+                        </md-checkbox>
+                      </div>
+                      <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 align-right">
+                        <button md-raised-button class="primary-button" [disabled]="delegateForm.invalid || !termsAndConditions.value">DELEGAR</button>
+                      </div>
+                    </div>
+                  </footer>
+
+                </md-card>
+
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<!-- TABLA DE SERVICIOS DESKTOP -->
+<table class="table services-table-desktop">
+  <thead>
+    <tr>
+      <th class="align-center">
+        <div class="header-checkbox">
+          <md-checkbox [disableRipple]="true" color="primary" [(ngModel)]="selectedAll" (change)="onCheckboxChange()" [disabled]="areAllAttached()"></md-checkbox>
+          <md-icon [mdMenuTriggerFor]="acciones">expand_more</md-icon>
+          <md-menu #acciones="mdMenu" xPosition="before" [overlapTrigger]="false">
+            <button md-menu-item (click)="selectAll()">Todos</button>
+            <button md-menu-item (click)="deselectAll()">Ninguno</button>
+          </md-menu>
+        </div>
+      </th>
+      <th>Suminsitro</th>
+      <th>Titular</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let service of services" [ngClass]="{'disabled':service.digital_invoice}">
+      <td class="align-center"><md-checkbox [disableRipple]="true" [(ngModel)]="service.selected" color="primary" (change)="checkIfAllSelected()" [disabled]="service.digital_invoice"></md-checkbox></td>
+      <td>{{service.identifier}} | {{service.address}}</td>
+      <td>{{service.owner_name}}</td>
+    </tr>
+  </tbody>
+</table>
+<!-- FIN TABLA DE SERVICIOS DESKTOP -->
+
+<!-- TABLA DE SERVICIOS MOBILE -->
+<div *ngFor="let service of services" [ngClass]="{'disabled':service.digital_invoice}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 services-table-mobile">
+  <div class="row">
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Suministro N°</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="row-data">{{service.identifier}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+          <label>Titular</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+          <label class="row-data align-right">{{service.owner_name}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-checkbox">
+      <md-checkbox [disableRipple]="true" [(ngModel)]="service.selected" color="primary" (change)="checkIfAllSelected()" [disabled]="service.digital_invoice"></md-checkbox>
+    </div>
+    <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Dirección Postal</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="header-data">{{service.billing_address}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN TABLA DE SERVICIOS MOBILE -->

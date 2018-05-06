@@ -1,0 +1,57 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-8 col-sm-8 col-md-10 col-lg-10 card-header">
+                <h1>Pagar</h1>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 align-right">
+                <img src="../assets/images/step_1.png" alt="" width="80" style="padding-top: 12px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <div class="card-image"></div>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <md-card>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h3 class="no-margin">Seleccione la tarjeta con la que desea pagar</h3>
+                    </div>
+                  </div>
+
+                  <div class="row online-payment-method-container">
+                    <div *ngFor="let onlinePaymentMethod of onlinePaymentMethods" class="col-xs-6 col-sm-6 col-md-3 col-lg-3 btn-tarjetas online-payment-method-wrapper">
+                      <a [ngClass]="{'active': selectedOnlinePaymentMethod == onlinePaymentMethod}" class="btn" (click)="selectOnlinePaymentMethod(onlinePaymentMethod)">
+                        <img [src]="onlinePaymentMethod.img_path" class="online-payment-method-brand">
+                      </a>
+                    </div>
+                  </div>
+
+                  <footer>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+                        <button md-raised-button class="primary-button" [disabled]="!selectedOnlinePaymentMethod">CONTINUAR</button>
+                      </div>
+                    </div>
+                  </footer>
+
+                </md-card>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+    </div>
+  </div>
+</div>

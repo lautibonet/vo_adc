@@ -1,0 +1,46 @@
+[
+  {
+    "id": "Plaza Guemes Nro 60 e/ 19 y 38",
+    "automatic_debit": false,
+    "digital_invoice": true,
+    "address": "Plaza Guemes Nro 60 e/ 19 y 38",
+    "billing_address": "Plaza Guemes Nro 60 e/ 19 y 38",
+    "status": 1,
+    "type": "Tarifa 3",
+    "social_rate":true,
+    "identifier": "1897/0-9406-0001101/1",
+    "debt": 7000,
+    "owner_name": "Grecia Camila Belen Colmenares",
+    "owner_id": 3,
+    "delegated_since": "19/08/2013"
+  },
+  {
+    "id": "Dr. Nicolas Repetto 1256",
+    "automatic_debit": true,
+    "digital_invoice": false,
+    "address": "Dr. Nicolas Repetto 1256",
+    "billing_address": "Dr. Nicolas Repetto 1256",
+    "status": 0,
+    "type": "Tarifa 1",
+    "social_rate":false,
+    "identifier": "1895/0-9306-0004505/2",
+    "debt": 7000,
+    "owner_name": "Lautaro Bonet",
+    "owner_id":1,
+    "shared_with": ["Martin Campano", "Gustavo Garcia"]
+  },
+  {
+    "id": "Fgta Sarmiento 1686",
+    "automatic_debit": true,
+    "digital_invoice": false,
+    "address": "Fgta Sarmiento 1686",
+    "billing_address": "Fgta Sarmiento 1686",
+    "status": 1,
+    "type": "Tarifa 1",
+    "social_rate":false,
+    "identifier": "1895/0-9306-0004405/1",
+    "debt": 7000,
+    "owner_name": "Lautaro Bonet",
+    "owner_id":1
+  }
+]

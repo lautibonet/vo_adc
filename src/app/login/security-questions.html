@@ -1,0 +1,48 @@
+<div class="login-background">
+  <div class="container login-container">
+    <h1>Ingrese a Innova</h1>
+
+    <md-card class="security-questions-card">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3>Preguntas de seguridad</h3>
+        </div>
+      </div>
+
+      <form name="security-questions-form" #securityQuestionsForm="ngForm">
+
+        <div class="row" *ngFor="let question of securityQuestions; let idx = index">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h5>{{question.title}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <md-radio-group [(ngModel)]="question.answer" name="question{{idx}}" required>
+                  <div *ngFor="let option of question.options" class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <md-radio-button [disableRipple]="true" [value]="option"><h3 class="no-margin">{{option.value}}</h3></md-radio-button>
+                    </div>
+                  </div>
+                </md-radio-group>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      <footer>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+            <button md-raised-button class="primary-button" type="submit" (click)="submit()" [disabled]="securityQuestionsForm.invalid">FINALIZAR</button>
+          </div>
+        </div>
+      </footer>
+
+    </md-card>
+
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+                <h1>Suministros Adheridos</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <md-progress-bar mode="indeterminate" *ngIf="!serviceAccessions"></md-progress-bar>
+                <md-card>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h3 class="no-margin">Seleccione de la lista los suministros a dar de baja</h3>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <debit-accessions-list [serviceAccessions]="serviceAccessions" *ngIf="serviceAccessions"></debit-accessions-list>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <h3>Motivo de solicitud de baja</h3>
+
+                  <form #cancelAccessionform="ngForm" class="cancel-accession-form">
+
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 item">
+                        <md-select [(ngModel)]="model.selectedMotive" placeholder="Seleccione Motivo" name="selectedMotive" required >
+                          <md-option *ngFor="let motiveOption of motiveOptions" [value]="motiveOption">
+                            {{motiveOption.display_name}}
+                          </md-option>
+                        </md-select>
+                      </div>
+                    </div>
+
+
+                    <div *ngIf="model.selectedMotive && model.selectedMotive.value == 2" >
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 item">
+                          <small>En caso que Ud. lo desee podrá indicar un Tope máximo para que sea debitado.
+                            ¿Quiere establecer un tope?</small>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 item">
+                            <md-radio-group [(ngModel)]="model.setMaxCap" name="setMaxCap" required="model.selectedMotive && model.selectedMotive == 2">
+                              <div class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                  <md-radio-button [disableRipple]="true" value="true">Si</md-radio-button>
+                                </div>
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                  <md-radio-button [disableRipple]="true" value="false">No</md-radio-button>
+                                </div>
+                              </div>
+                            </md-radio-group>
+                          </div>
+                        </div>
+
+                        <div class="row" *ngIf="model.setMaxCap == 'true'">
+                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <md-input-container >
+                              <span mdPrefix>$ &nbsp;</span>
+                              <input mdInput [(ngModel)]="model.maxCap" name="maxCap" placeholder="Ingrese un tope" type="number" required="model.setMaxCap == 'true'">
+                            </md-input-container>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row" *ngIf="model.selectedMotive && model.selectedMotive.value == 5">
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                          <md-input-container>
+                            <input mdInput [(ngModel)]="model.otherMotive" name="otherMotive" placeholder="Indique motivo" maxlength="400" required="model.selectedMotive && model.selectedMotive.value == 5">
+                            <md-hint align="end">{{ !model.otherMotive ? 0 : model.otherMotive.length }} / 400</md-hint>
+                          </md-input-container>
+                        </div>
+                      </div>
+
+                    </form>
+
+                    <footer>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+                          <button md-raised-button *ngIf="!model.setMaxCap || model.setMaxCap == 'false'" class="primary-button" (click)="submit()" [disabled]="cancelAccessionform.invalid || noServiceSelected()">CONFIRMAR</button>
+                          <button md-raised-button *ngIf="model.setMaxCap == 'true'" class="primary-button" (click)="submit()" [disabled]="cancelAccessionform.invalid || noServiceSelected()">MODIFICAR</button>
+                        </div>
+                      </div>
+                    </footer>
+
+                  </md-card>
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
+    </div>
+  </div>
+</div>

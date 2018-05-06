@@ -1,0 +1,29 @@
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+        <md-progress-bar mode="indeterminate" *ngIf="loading"></md-progress-bar>
+        <md-card>
+
+          <h3>Ingrese la dirección o seleccione un punto en el mapa.</h3>
+
+          <div class="row">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-ls-8">
+              <md-input-container style="margin-top: -8px;">
+                <input mdInput [(ngModel)]="model.address" name="address" placeholder="Dirección" />
+              </md-input-container>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-ls-4 align-right">
+              <button md-raised-button class="primary-button" (click)="searchAddress()" [disabled]="loading">BUSCAR</button>
+            </div>
+          </div>
+
+          <div class="google-map-container">
+            <google-map [lat]="model.lat" [lng]="model.lng" [zoom]="zoom" [marker]="marker" (mapClick)="mapClickEvent($event)"></google-map>
+          </div>
+
+        </md-card>
+      </div>
+    </div>
+  </article>
+</div>

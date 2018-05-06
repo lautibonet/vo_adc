@@ -1,0 +1,90 @@
+<!-- TABLA DE ADHESIONES DESKTOP -->
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 custom-table accessions-table-desktop">
+  <div class="row header">
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+      <md-checkbox [disableRipple]="true" color="primary" [(ngModel)]="selectedAll" (change)="selectAll()" [disabled]="noneAttached()"></md-checkbox>
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <label>Suministro</label>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <label>Titular</label>
+    </div>
+  </div>
+  <div *ngFor="let serviceAccession of serviceAccessions" [ngClass]="{'disabled':!serviceAccession.automatic_debit}">
+    <div class="row data">
+      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <md-checkbox [disableRipple]="true" [(ngModel)]="serviceAccession.selected" color="primary" (change)="checkIfAllSelected()" [disabled]="!serviceAccession.automatic_debit"></md-checkbox>
+      </div>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        {{serviceAccession.identifier}} | {{serviceAccession.address}}
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        {{serviceAccession.owner_name}}
+      </div>
+    </div>
+    <div *ngIf="serviceAccession.automatic_debit" class="row data odd">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 align-right">
+        <label>Tipo de adhesión</label>
+      </div>
+      <div *ngIf="serviceAccession.debit_type=='onlinePayment'" class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        <label><b>{{serviceAccession.debit_type_display_name}} {{serviceAccession.online_payment_method}}</b></label>
+      </div>
+      <div *ngIf="serviceAccession.debit_type=='directDebit'" class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        <label><b>CBU - {{serviceAccession.bank}}</b></label>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN TABLA DE ADHESIONES DESKTOP -->
+
+<!-- TABLA DE ADHESIONES MOBILE -->
+<div *ngFor="let serviceAccession of serviceAccessions"[ngClass]="{'disabled':!serviceAccession.automatic_debit}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 accessions-table-mobile">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Dirección N°</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="header-data"><b>{{serviceAccession.address}}</b></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Tipo de adhesión</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label *ngIf="serviceAccession.debit_type=='onlinePayment'" class="header-data">{{serviceAccession.debit_type_display_name}} {{serviceAccession.online_payment_method}}</label>
+          <label *ngIf="serviceAccession.debit_type=='directDebit'" class="header-data">CBU - {{serviceAccession.bank}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-checkbox align-center">
+      <md-checkbox [disableRipple]="true" [(ngModel)]="serviceAccession.selected" color="primary" (change)="checkIfAllSelected()" [disabled]="!serviceAccession.automatic_debit"></md-checkbox>
+    </div>
+    <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Titular</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="header-data">{{serviceAccession.owner_name}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN TABLA DE ADHESIONES MOBILE -->

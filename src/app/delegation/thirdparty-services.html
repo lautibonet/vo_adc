@@ -1,0 +1,11 @@
+<action-bar [actions]="actions" [title]="title"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <loading-services-message *ngIf="!thirdpartyServicesGroupByOwner"></loading-services-message>
+
+      <thirdparty-service-card [owner]="item.key" [services]="item.values" [idx]="idx" *ngFor="let item of thirdpartyServicesGroupByOwner; let idx = index"></thirdparty-service-card>
+    </div>
+  </div>
+</div>

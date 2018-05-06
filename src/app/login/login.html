@@ -1,0 +1,65 @@
+<div class="login-background">
+  <div class="login-container">
+    <h1>Ingrese a Innova</h1>
+
+    <md-card class="login-card">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3 class="no-margin">Ingrese sus datos</h3>
+        </div>
+      </div>
+
+      <form #loginForm="ngForm" name="login-form">
+        <div class="row">
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+            <md-select [(ngModel)]="model.selectedDocumentType" #docType="ngModel" name="documentType" placeholder="Tipo Documento" floatPlaceholder="never" required="true">
+              <md-option *ngFor="let documentTypeOption of documentTypeOptions" [value]="documentTypeOption">
+                {{documentTypeOption.display_name}}
+              </md-option>
+            </md-select>
+          </div>
+          <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+            <md-input-container>
+              <input mdInput [(ngModel)]="model.documentNumber" name="documentNumber" placeholder="Número de Documento" maxlength="11" required="true" />
+            </md-input-container>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <md-input-container>
+              <input mdInput show-hide-input [(ngModel)]="model.password" name="password" placeholder="Contraseña" [type]="passwordType" required="true" />
+              <button md-button mdSuffix type="button" class="show-hide-password" (click)="toggleShow()"><md-icon>remove_red_eye</md-icon></button>
+            </md-input-container>
+          </div>
+        </div>
+      </form>
+
+      <footer>
+        <div class="row">
+          <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <small>¿Problemas para ingresar?</small>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <a href="">Recuperar Contraseña</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 align-right">
+            <button md-raised-button class="primary-button" (click)="submitLogin()" [disabled]="loginForm.invalid">INGRESAR</button>
+          </div>
+        </div>
+      </footer>
+
+    </md-card>
+
+    <div class="under-footer">
+      <h3 class="align-center"><b>¿No tienes cuenta? <a routerLink="/signup" routerLinkActive="active">Ingresa Aquí.</a></b></h3>
+    </div>
+
+  </div>
+</div>

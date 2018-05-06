@@ -1,0 +1,218 @@
+<div class="login-background">
+  <div *ngIf="!showTermsAndConditions" class="signup-container">
+    <h1>Ingrese a Innova</h1>
+
+    <md-card class="signup-card">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3 class="no-margin">Ingrese sus datos para registrarse</h3>
+        </div>
+      </div>
+
+      <form name="signup-form" #signupForm="ngForm">
+
+        <div *ngIf="step == 'one'">
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+              <md-select #documentType="ngModel" [(ngModel)]="model.documentType" name="documentType" placeholder="Tipo Documento" required>
+                <md-option *ngFor="let documentTypeOption of documentTypeOptions" [value]="documentTypeOption.id">
+                  {{documentTypeOption.display_name}}
+                </md-option>
+              </md-select>
+              <div *ngIf="documentType.touched && documentType.errors && documentType.errors.required" class="error">
+                <small>El tipo de documento es requerido</small>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+              <md-input-container floatPlaceholder="never">
+                <input mdInput #documentNumber="ngModel" [(ngModel)]="model.documentNumber" name="documentNumber" placeholder="Número de Documento" maxlength="11" required />
+              </md-input-container>
+              <div *ngIf="!documentNumber.pristine && documentNumber.errors && documentNumber.errors.required" class="error">
+                <small>El nro. de documento es requerido</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #country="ngModel" [(ngModel)]="model.country" [mdAutocomplete]="countryAuto" name="country" placeholder="País de Origen" required />
+                <md-icon mdSuffix *ngIf="!countries">refresh</md-icon>
+              </md-input-container>
+              <md-autocomplete #countryAuto="mdAutocomplete">
+                 <md-option *ngFor="let country of countries | filter:model.country" [value]="country">
+                    {{ country }}
+                 </md-option>
+              </md-autocomplete>
+              <div *ngIf="!country.pristine && country.errors && country.errors.required" class="error">
+                <small>Por favor indique país de origen</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-select #sex="ngModel" [(ngModel)]="model.sex" name="sex" placeholder="Sexo" floatPlaceholder="never" required>
+                <md-option *ngFor="let sexOption of sexOptions" [value]="sexOption.id">
+                  {{sexOption.display_name}}
+                </md-option>
+              </md-select>
+              <div *ngIf="sex.touched && sex.errors && sex.errors.required" class="error">
+                <small>Por favor indique sexo</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #password="ngModel" [(ngModel)]="model.password" name="password" placeholder="Contraseña" [type]="passwordType" [pattern]="passwordPattern" required />
+                <button md-button mdSuffix type="button" class="show-hide-password" name="showPassword" (click)="toggleShowPassword()"><md-icon>remove_red_eye</md-icon></button>
+              </md-input-container>
+              <div *ngIf="!password.pristine && password.errors && password.errors.required" class="error">
+                <small>La contraseña es requerida</small>
+              </div>
+              <div *ngIf="!password.valid && !password.pristine" class="error">
+                <small>Mínimo 8 caracteres, un número y una letra</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #confirmedPassword="ngModel" [(ngModel)]="model.confirmedPassword" name="confirmedPassword" placeholder="Repetir Contraseña" [type]="confirmedPasswordType" [pattern]="passwordPattern" required/>
+                <button md-button mdSuffix type="button" class="show-hide-password" name="showConfirmedPassword" (click)="toggleShowConfirmedPassword()"><md-icon>remove_red_eye</md-icon></button>
+              </md-input-container>
+              <div *ngIf="!confirmedPassword.pristine && confirmedPassword.errors && confirmedPassword.errors.required" class="error">
+                <small>Por favor repita la contraseña</small>
+              </div>
+              <div *ngIf="!confirmedPassword.valid && !confirmedPassword.pristine" class="error">
+                <small>Mínimo 8 caracteres, un número y una letra</small>
+              </div>
+              <div *ngIf="confirmedPassword.dirty && !passwordsMatch()" class="error">
+                <small>Las contraseñas no coinciden</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="step == 'two'">
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #name="ngModel" [(ngModel)]="model.name" name="name" placeholder="Nombre" required/>
+              </md-input-container>
+              <div *ngIf="!name.pristine && name.errors && name.errors.required" class="error">
+                <small>Por favor ingrese el nombre</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #apellido="ngModel" [(ngModel)]="model.lastname" name="lastname" placeholder="Apellido" required/>
+              </md-input-container>
+              <div *ngIf="!apellido.pristine && apellido.errors && apellido.errors.required" class="error">
+                <small>Por favor ingrese el apellido</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #email="ngModel" [(ngModel)]="model.email" name="email" placeholder="Correo Electrónico" [pattern]="emailPattern" required/>
+              </md-input-container>
+              <div *ngIf="!email.pristine && email.errors && email.errors.required" class="error">
+                <small>Por favor ingrese el email</small>
+              </div>
+              <div *ngIf="!email.valid && !email.pristine" class="error">
+                <small>Por favor ingrese un email válido</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput [mdDatepicker]="picker" #birthdate="ngModel" [(ngModel)]="model.birthdate" name="birthdate" placeholder="Fecha de Nacimiento" required>
+                <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+              </md-input-container>
+              <md-datepicker #picker></md-datepicker>
+              <div *ngIf="!birthdate.pristine && birthdate.errors && birthdate.errors.required" class="error">
+                <small>Por favor ingrese la fecha de nacimiento</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #telephone="ngModel" [(ngModel)]="model.telephone" name="telephone" placeholder="Teléfono" required/>
+              </md-input-container>
+              <div *ngIf="!telephone.pristine && telephone.errors && telephone.errors.required" class="error">
+                <small>Por favor ingrese un nro de teléfono</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <md-input-container>
+                <input mdInput #celphone="ngModel" [(ngModel)]="model.celphone" name="celphone" placeholder="Celular" required/>
+              </md-input-container>
+              <div *ngIf="!celphone.pristine && celphone.errors && celphone.errors.required" class="error">
+                <small>Por favor ingrese un nro de celular</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+
+      <footer *ngIf="step == 'one'">
+        <div class="row is-table-row">
+          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <md-checkbox #termsAndConditions="ngModel" [disableRipple]="true" [(ngModel)]="model.termsAndConditions" name="termsAndConditions" color="primary" required></md-checkbox>
+          </div>
+          <div class="col-xs-6 col-sm-7 col-md-7 col-lg-7">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <small>He leído y acepto los</small>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <a href="javascript:void(0)" (click)="clickTermsAndConditions()">Términos y Condiciones</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 align-right">
+            <button md-raised-button class="primary-button" type="button" (click)="continueSignup()" [disabled]="!signupForm.valid || !termsAndConditions.value || !passwordsMatch()">CONTINUAR</button>
+          </div>
+        </div>
+      </footer>
+
+      <footer *ngIf="step == 'two'">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+            <button md-raised-button class="primary-button" type="submit" (click)="submitSignup()" [disabled]="signupForm.invalid">CONFIRMAR</button>
+          </div>
+        </div>
+      </footer>
+
+    </md-card>
+
+    <div class="under-footer">
+      <h3 class="align-center"><b>¿Ya tienes cuenta? <a routerLink="/login" routerLinkActive="active">Ingresa Aquí.</a></b></h3>
+    </div>
+
+  </div>
+
+  <terms-and-conditions *ngIf="showTermsAndConditions" (onBack)="clickTermsAndConditions()"></terms-and-conditions>
+</div>

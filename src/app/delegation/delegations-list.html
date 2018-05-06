@@ -1,0 +1,74 @@
+<!-- TABLA DE SERVICIOS DELEGADOS DESKTOP -->
+<table class="table services-table-desktop">
+  <thead>
+    <tr>
+      <th class="align-center">Documento</th>
+      <th class="align-center">Número</th>
+      <th width="50%">Nombre Completo</th>
+      <th class="align-center">Vigente Desde</th>
+      <th class="align-center">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let delegation of delegations">
+      <td class="align-center">{{delegation.delegated_document_type}}</td>
+      <td class="align-center">{{delegation.delegated_document_number}}</td>
+      <td>{{delegation.delegated_fullname}}</td>
+      <td class="align-center">{{delegation.start_date}}</td>
+      <td class="align-center"><button md-button class="no-background"><h4 class="no-margin">REVOCAR</h4></button></td>
+    </tr>
+  </tbody>
+</table>
+<!-- FIN TABLA DE SERVICIOS DELEGADOS DESKTOP -->
+
+<!-- TABLA DE SERVICIOS DELEGADOS MOBILE -->
+<div *ngFor="let delegation of delegations" class="container services-table-mobile">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Nombre Completo</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="row-data">{{delegation.delegated_fullname}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Documento</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="row-data">{{delegation.delegated_document_type}} {{delegation.delegated_document_number}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label>Vigente Desde</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <label class="header-data">{{delegation.start_date}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <button md-button><h4 style="line-height: 26px;">REVOCAR</h4></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN TABLA DE SERVICIOS DELGEADOS MOBILE -->

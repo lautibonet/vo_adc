@@ -1,0 +1,107 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+                <h1>Suministros Disponibles</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <md-progress-bar mode="indeterminate" *ngIf="!services"></md-progress-bar>
+                <md-card>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h3 class="no-margin">Seleccione de la lista los suministros a adherir al débito automático</h3>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <debit-services-list [services]="services" *ngIf="services"></debit-services-list>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h3>Complete con los datos de su medio de pago</h3>
+                    </div>
+                  </div>
+
+
+                  <form #debitForm="ngForm" name="debit-form" class="automatic-debit-form">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <md-select [(ngModel)]="model.debitOption" name="debitOption" placeholder="Tipo de adhesión" floatPlaceholder="never" required>
+                          <md-option *ngFor="let debitOption of debitOptions" [value]="debitOption.value">
+                            {{debitOption.display_name}}
+                          </md-option>
+                        </md-select>
+                      </div>
+                    </div>
+
+                    <div *ngIf="model.debitOption && model.debitOption == 'directDebit'">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-select [(ngModel)]="model.bank" name="bank" placeholder="Banco" floatPlaceholder="never" required="selectedDebitOption && selectedDebitOption.value == 'directDebit'">
+                            <md-option *ngFor="let bankOption of bankOptions" [value]="bankOption.value">
+                              {{bankOption.display_name}}
+                            </md-option>
+                          </md-select>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-input-container>
+                            <input mdInput placeholder="CBU" [(ngModel)]="model.cbu" name="cbu" required="selectedDebitOption && selectedDebitOption.value == 'directDebit'">
+                          </md-input-container>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf="model.debitOption && model.debitOption == 'onlinePayment'">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-select [(ngModel)]="model.onlineMethod" name="onlineMethod" placeholder="Tarjeta" floatPlaceholder="never" required="selectedDebitOption && selectedDebitOption.value == 'onlinePayment'">
+                            <md-option *ngFor="let onlineMethodOption of onlineMethodOptions" [value]="onlineMethodOption.value">
+                              {{onlineMethodOption.display_name}}
+                            </md-option>
+                          </md-select>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                          <md-input-container>
+                            <input mdInput placeholder="Número de Tarjeta" [(ngModel)]="model.onlineMethodNumber" name="methodNumber" required="selectedDebitOption && selectedDebitOption.value == 'onlinePayment'">
+                          </md-input-container>
+                        </div>
+                      </div>
+                    </div>
+
+                    <footer>
+                      <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-10 col-lg-10">
+                          <md-checkbox [disableRipple]="true" #termsAndConditions="ngModel" [(ngModel)]="model.termsAndConditions" name="termsAndConditions" color="primary" required>
+                            He leído y acepto los <a><b>términos y condiciones</b></a>
+                          </md-checkbox>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 align-right">
+                          <button md-raised-button class="primary-button" [disabled]="debitForm.invalid || !termsAndConditions.value">ADHERIR</button>
+                        </div>
+                      </div>
+                    </footer>
+
+                  </form>
+
+                </md-card>
+
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+    </div>
+  </div>
+</div>

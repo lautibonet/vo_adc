@@ -1,0 +1,20 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h1>Nuevo Reclamo</h1>
+        </div>
+      </div>
+
+      <instalation-problem-select [model]="model" [showBanner]="true"></instalation-problem-select>
+
+      <select-problem-location [model]="model" *ngIf="isInstalationSelected()"></select-problem-location>
+
+      <commentary [model]="model" *ngIf="model.lat && model.lng"></commentary>
+
+    </div>
+  </div>
+</div>

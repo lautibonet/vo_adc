@@ -1,0 +1,86 @@
+<div class="row">
+
+    <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+          <h1>Consultar por Servicio</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+          <div class="card-image"></div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+          <md-progress-bar mode="indeterminate" *ngIf="loading"></md-progress-bar>
+          <md-card>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3 class="no-margin">Usted puede ingresar el número de servicio o consultar el cuadro tarifario <a>aquí</a></h3>
+              </div>
+            </div>
+
+            <form #socialRateForm="ngForm" name="social-rate-form" class="social-rate-form">
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                  <md-input-container>
+                    <input mdInput [(ngModel)]="model.serviceNumber" #serviceNumber="ngModel" name="serviceNumber" placeholder="Número de Servicio" required />
+                  </md-input-container>
+                  <div *ngIf="!serviceNumber.pristine && serviceNumber.errors && serviceNumber.errors.required" class="error">
+                    <small>Por favor ingrese el nro de servicio</small>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+            <footer>
+              <div class="row is-table-row-mobile">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-">
+                  <div class="captcha">CAPTCHA</div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 align-right">
+                  <button md-raised-button class="primary-button" [disabled]="socialRateForm.invalid" (click)="submit()">CONSULTAR</button>
+                </div>
+              </div>
+            </footer>
+
+            <div *ngIf="submitted && !loading">
+              <hr>
+
+              <div class="row" *ngIf="!serviceResult">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h3 class="no-margin">El número de servicio ingresado es inexistente</h3>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="serviceResult && !serviceResult.social_rate">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h3 class="no-margin">El número de servicio ingresado NO es beneficiario de la Tarifa Social</h3>
+                </div>
+              </div>
+
+              <div *ngIf="serviceResult && serviceResult.social_rate">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="no-margin">El número de servicio ingresado es beneficiario de la Tarifa Social</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <result-table [serviceResult]="serviceResult"></result-table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </md-card>
+
+        </div>
+      </div>
+
+    </article>
+
+  </div>

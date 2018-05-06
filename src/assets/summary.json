@@ -1,0 +1,18 @@
+[
+  {
+    "owner_id": 1,
+    "owner_name": "Lautaro Bonet",
+    "services_count": 2,
+    "receipts_count": 6,
+    "overdue_receipts_count": 2,
+    "total_debt": 15000
+  },
+  {
+    "owner_id": 3,
+    "owner_name": "Grecia Camila Belen Colmenares",
+    "services_count": 1,
+    "receipts_count": 4,
+    "overdue_receipts_count": 2,
+    "total_debt": 7500
+  }
+]

@@ -1,0 +1,20 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h1>Nuevo Reclamo</h1>
+        </div>
+      </div>
+
+      <service-select [model]="model" [services]="services"></service-select>
+
+      <instalation-problem-select [model]="model" *ngIf="model.service"></instalation-problem-select>
+
+      <commentary [model]="model" *ngIf="isInstalationSelected()"></commentary>
+
+    </div>
+  </div>
+</div>

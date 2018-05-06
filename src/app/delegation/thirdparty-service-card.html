@@ -1,0 +1,45 @@
+  <div class="row">
+
+    <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-header">
+          <h1>{{owner}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+          <!-- <md-progress-bar mode="indeterminate" *ngIf="detailsShown && !services"></md-progress-bar> -->
+          <md-card>
+            <div class="card-button-header" [ngClass]="{'single-row-collapsed': detailsShown == 'close'}">
+              <div class="row">
+                <!-- ACCIONES -->
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                  <button md-button [mdMenuTriggerFor]="acciones" class="align-vertical">
+                    <md-icon class="align-vertical align-left">more_vert</md-icon> ACCIONES
+                  </button>
+                  <md-menu #acciones="mdMenu">
+                    <!-- <button md-menu-item>Realizar reclamo</button> -->
+                  </md-menu>
+                </div>
+                <!-- DETALLE -->
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+                  <button md-button (click)='showDetails()'>DETALLE
+                    <md-icon *ngIf="detailsShown == 'close'">expand_more</md-icon>
+                    <md-icon *ngIf="detailsShown == 'open'">expand_less</md-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-detail" [@expandCollapse]="detailsShown" >
+              <thirdparty-services-list [services]="services" *ngIf="services"></thirdparty-services-list>
+            </div>
+
+          </md-card>
+
+        </div>
+      </div>
+
+    </article>
+
+  </div>

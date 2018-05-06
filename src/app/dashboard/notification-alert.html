@@ -1,0 +1,21 @@
+<div class="notification-alert-article notification-alert"  [@expandCollapse]="alertShown">
+    <div class="container">
+
+      <div class="row flex">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <div class="alert-icon">
+            <img src="assets/images/alert.png">
+          </div>
+          <div class="alert-text">
+            <h2>Servicio en Suspension</h2>
+            <p>Uno de sus servicios se encuentra pendiente de suspension</p>
+          </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <button md-button [disableRipple]="true" type="button" class="close-alert" (click)="alertShown = 'close'">{{'common.button.close' | translate}} <md-icon>close</md-icon></button>
+          <button md-button type="button" class="more-details">{{'common.button.more' | translate}}</button>
+        </div>
+      </div>
+
+    </div>
+</div>

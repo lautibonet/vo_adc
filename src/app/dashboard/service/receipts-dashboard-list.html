@@ -1,0 +1,107 @@
+<!-- TABLA DE RECIBOS DESKTOP -->
+  <table class="table recibos-table-desktop">
+    <thead>
+      <tr>
+        <th class="align-center">{{'labels.pay' | translate}}</th>
+        <th>{{'bill.number' | translate}}</th>
+        <th>{{'bill.due_date' | translate}}</th>
+        <th>{{'bill.concept' | translate}}</th>
+        <th>{{'bill.balance' | translate}}</th>
+        <th class="align-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-receipt [ngForOf]="receipts" >
+        <tr [ngClass]="{'disabled':!receipt.is_payable, 'overdue':isOverdueReceipt(receipt.due_date)}">
+          <td class="align-center"><md-checkbox [disableRipple]="true" [(ngModel)]="receipt.selected" color="primary" [disabled]="!receipt.is_payable"></md-checkbox></td>
+          <td>{{receipt.id}}</td>
+          <td>{{receipt.due_date}}</td>
+          <td>{{receipt.display_name}}</td>
+          <td><b>{{receipt.balance | currencyFormat}}</b></td>
+          <td class="align-center">
+            <button md-button [disabled]="!receipt.is_payable" (click)="viewReceipt()"><md-icon>remove_red_eye</md-icon></button>
+            <button md-button [disabled]="!receipt.is_payable"><md-icon>file_download</md-icon></button>
+          </td>
+        </tr>
+        <tr *ngIf="!receipt.is_payable" class="not-payable-motive">
+          <td class="align-center"><md-icon>warning</md-icon></td>
+          <td colspan="6">Motivo por el cual no se puede pagar</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+  <!-- FIN TABLA DE RECIBOS DESKTOP -->
+
+  <!-- TABLA DE RECIBOS MOBILE -->
+  <div *ngFor="let receipt of receipts" [ngClass]="{'disabled':!receipt.is_payable, 'overdue':isOverdueReceipt(receipt.due_date)}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 recibos-table-mobile">
+    <div class="row">
+      <div class="col-xs-7 col-sm-9 col-md-9 col-lg-9">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label>{{'bill.number' | translate}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="header-data">{{receipt.id}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5 col-sm-3 col-md-3 col-lg-3 align-right">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label>{{'bill.due_date' | translate}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="header-data">{{receipt.due_date}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label>{{'bill.concept' | translate}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="header-data">{{receipt.display_name}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-checkbox align-center">
+        <md-checkbox [disableRipple]="true" [(ngModel)]="receipt.selected" color="primary" [disabled]="!receipt.is_payable"></md-checkbox>
+      </div>
+      <div class="col-xs-5 col-sm-7 col-md-7 col-lg-7">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label>{{'bill.balance' | translate}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="header-data"><b>{{receipt.balance | currencyFormat}}</b></label>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 button-group align-right">
+        <button md-button [disabled]="!receipt.is_payable"><md-icon>remove_red_eye</md-icon></button>
+        <button md-button [disabled]="!receipt.is_payable"><md-icon>file_download</md-icon></button>
+      </div>
+    </div>
+    <div class="row not-payable-motive-mobile" *ngIf="!receipt.is_payable">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
+        <md-icon>warning</md-icon>
+      </div>
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <p>Motivo por que no se puede pagar</p>
+      </div>
+    </div>
+  </div>
+  <!-- FIN TABLA DE RECIBOS MOBILE -->

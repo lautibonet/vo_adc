@@ -1,0 +1,95 @@
+
+  <div class="app-navbar mat-elevation-z6">
+    <nav class="docs-navbar">
+      <button md-icon-button disableRipple="true" class="menu-btn" *ngIf="loggedUser" (click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+      </button>￼
+      <a (click)="logoClick()" href="javascript:void(0)" [ngClass]="{'padded': !loggedUser}">
+        <img src="../assets/images/logo.png" class="logo" >
+      </a>
+      <div class="pull-right" *ngIf="loggedUser">
+        <button md-button [mdMenuTriggerFor]="profile" class="profile-dropdown">
+          <div class="name-arrow-icon hide-mobile">
+            <span #username>{{loggedUser.fullname}}</span>
+            <md-icon>keyboard_arrow_down</md-icon>
+          </div>
+          <md-icon class="account-icon hide-desktop">account_circle</md-icon>
+        </button>
+        <md-menu #profile="mdMenu" xPosition="before" [overlapTrigger]="false">
+          <button md-menu-item routerLink="/profile" routerLinkActive="active"><md-icon class="align-vertical">mode_edit</md-icon>Editar Perfil</button>
+          <button md-menu-item (click)="logout()"><md-icon class="align-vertical">exit_to_app</md-icon>Salir</button>
+        </md-menu>
+        <button md-button (click)="notificationsnav.toggle()" class="notifications-button">
+          <md-icon>notifications</md-icon><mark></mark>
+        </button>
+      </div>
+      <div class="pull-right" *ngIf="!loggedUser">
+        <button md-raised-button (click)="goToSignup()" *ngIf="inLoginPage" class="primary-button">CREAR CUENTA</button>
+        <button md-raised-button (click)="goToLogin()" *ngIf="!inLoginPage" class="primary-button">ENTRAR</button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- <login *ngIf="!loggedUser"></login> -->
+  <router-outlet *ngIf="!loggedUser"></router-outlet>
+
+  <md-sidenav-container *ngIf="loggedUser">
+    <md-sidenav #sidenav mode="side" opened="true" class="menu-sidenav">
+      <menu (onClick)="toggleMobile()"></menu>
+    </md-sidenav>
+
+    <md-sidenav #notificationsnav align="end" mode="over" opened="false" class="notifications-sidenav">
+    <nav>
+      <div class="row notifications-header">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <h3 class="no-margin">Nuevas Notificaciones</h3>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <button md-button [disableRipple]="true" class="close-notifications" type="button" (click)='notificationsnav.toggle()'><md-icon>close</md-icon></button>
+        </div>
+      </div>
+      <div class="row no-notifications"> <!-- esta fila se muestra si hay notificaciones nuevas -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-center">
+          <span>No se encontraron nuevas notificaciones</span>
+        </div>
+      </div>
+      <div class="row notifications-header">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3 class="no-margin">Anteriores</h3>
+        </div>
+      </div>
+      <ul>
+        <li class="old-notification">
+          <div class="row is-table-row">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <md-icon>description</md-icon>
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+              <h3 class="no-margin"><b>Tiene facturas por vencer</b></h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                <p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    </md-sidenav>
+
+
+    <div class="docs-component-sidenav-content">
+
+      <md-progress-bar mode="indeterminate" *ngIf="loadingPage"></md-progress-bar>
+      <router-outlet></router-outlet>
+
+      <page-footer></page-footer>
+
+    </div>
+
+    <!-- primary content -->
+  </md-sidenav-container>

@@ -1,0 +1,51 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 card-header">
+                <h1>Reclamo Técnico</h1>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <div class="card-image"></div>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <!-- <md-progress-bar mode="indeterminate" *ngIf="loading"></md-progress-bar> -->
+                <md-card>
+                  <div class="row is-table-row">
+                    <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                      <h3 class="grey">Realizar nuevo reclamo técnico</h3>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 align-right">
+                      <button md-raised-button [mdMenuTriggerFor]="reclamos" class="primary-button">NUEVO RECLAMO</button>
+                      <md-menu #reclamos="mdMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
+                        <button md-menu-item routerLink="/demand/blackout" routerLinkActive="active">Reclamo técnico sin luz</button>
+                        <button md-menu-item routerLink="/demand/voltage" routerLinkActive="active">Problemas de tensión</button>
+                        <button md-menu-item routerLink="/demand/local" routerLinkActive="active">Problemas en mi suministro</button>
+                        <button md-menu-item routerLink="/demand/public" routerLinkActive="active">Problemas en la vía pública</button>
+                      </md-menu>
+                    </div>
+                  </div>
+
+                </md-card>
+
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+
+        <demand-card *ngFor="let demand of demands" [demand]="demand"></demand-card>
+
+    </div>
+  </div>
+</div>

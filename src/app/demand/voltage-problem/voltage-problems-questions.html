@@ -1,0 +1,37 @@
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+        <md-card>
+
+          <div class="row item">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-ls-7">
+              <h4 class="no-margin" style="line-height: 32px;">¿Desde cuando detecta el problema en su domicilio?</h4>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-ls-5">
+              <md-select [(ngModel)]="model.since" #instalation="ngModel" name="since" placeholder="Seleccionar" required>
+                <md-option *ngFor="let option of sinceOptions" [value]="option">
+                  {{option}}
+                </md-option>
+              </md-select>
+            </div>
+          </div>
+
+          <div class="row item">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-ls-7">
+              <h4 class="no-margin" style="line-height: 32px;">¿En qué momento del dia detecta que ocurre?</h4>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-ls-5">
+              <md-select [(ngModel)]="model.moment" #problem="ngModel" name="moment" placeholder="Seleccionar" required>
+                <md-option *ngFor="let option of momentOptions" [value]="option">
+                  {{option}}
+                </md-option>
+              </md-select>
+            </div>
+          </div>
+
+        </md-card>
+      </div>
+    </div>
+  </article>
+</div>

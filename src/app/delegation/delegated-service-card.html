@@ -1,0 +1,47 @@
+<div class="row">
+
+  <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-header">
+        <h1>{{service.id}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+        <md-progress-bar mode="indeterminate" *ngIf="detailsShown && !delegations"></md-progress-bar>
+        <md-card>
+          <div class="card-button-header">
+            <div class="row">
+              <!-- ACCIONES -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+                <button md-button [mdMenuTriggerFor]="acciones" class="align-vertical">
+                  <md-icon class="align-vertical align-left">more_vert</md-icon> ACCIONES
+                </button>
+                <md-menu #acciones="mdMenu">
+                  <!-- <button md-menu-item>Realizar reclamo</button> -->
+                </md-menu>
+              </div>
+              <!-- DETALLE -->
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-right">
+                <button md-button (click)='showDetails()'>DETALLE
+                  <md-icon *ngIf="!detailsShown">expand_more</md-icon>
+                  <md-icon *ngIf="detailsShown">expand_less</md-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <service-header [service]="service"></service-header>
+
+          <div class="service-detail" [@expandCollapse]="detailsShown" >
+            <delegations-list [delegations]="delegations" *ngIf="delegations"></delegations-list>
+          </div>
+
+        </md-card>
+
+      </div>
+    </div>
+
+  </article>
+
+</div>

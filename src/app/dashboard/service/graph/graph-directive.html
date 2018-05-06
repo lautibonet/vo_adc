@@ -1,0 +1,19 @@
+<div class="canvas-wrapper">
+  <canvas *ngIf="isDataSet()"
+          baseChart
+          [datasets]="chartData"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="chartLegend"
+          [colors]="lineChartColors"
+          [chartType]="chartType"
+          (chartClick)="graphClick($event)"></canvas>
+  <canvas *ngIf="!isDataSet()"
+          baseChart
+          [data]="chartData"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="chartLegend"
+          [chartType]="chartType"
+          (chartClick)="graphClick($event)"></canvas>
+</div>

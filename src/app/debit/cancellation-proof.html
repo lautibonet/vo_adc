@@ -1,0 +1,148 @@
+<action-bar [title]="title" [actions]="actions"></action-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+
+          <article class="col-xs-12 col-sm-12 col-md-12 col-ls-12 card-component">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 carwd-header">
+                <h1>Constancia de baja a débito automático</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+                <md-progress-bar mode="indeterminate" *ngIf="!cancelledAccessions"></md-progress-bar>
+
+                <md-card>
+                  <div *ngIf="cancelledAccessions">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="no-margin">Capital Federal, 17 de Agosto</h3>
+                      </div>
+                    </div>
+
+                    <div class="title-group">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <h1 class="no-margin"><b>Constancia de modificación de baja de débito automático</b></h1>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <h4 class="thin no-margin">En el día de la fecha se solicitó la baja de débito automático en el/los siguiente/s suministro/s.</h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row accessions-tables" *ngIf="cancelledAccessions">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!-- TABLA DE ADHESIONES DESKTOP -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 custom-table accessions-table-desktop">
+                          <div class="row header">
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                              <label>Suministro</label>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                              <label>Titular</label>
+                            </div>
+                          </div>
+                          <div *ngFor="let serviceAccession of cancelledAccessions" [ngClass]="{'disabled':!serviceAccession.automatic_debit}">
+                            <div class="row data">
+                              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                {{serviceAccession.identifier}} | {{serviceAccession.address}}
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                {{serviceAccession.owner_name}}
+                              </div>
+                            </div>
+                            <div *ngIf="serviceAccession.automatic_debit" class="row data odd">
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <label>Tipo de adhesión</label>
+                              </div>
+                              <div *ngIf="serviceAccession.debit_type=='onlinePayment'" class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <label><b>{{serviceAccession.debit_type_display_name}} {{serviceAccession.online_payment_method}}</b></label>
+                              </div>
+                              <div *ngIf="serviceAccession.debit_type=='directDebit'" class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <label><b>CBU - {{serviceAccession.bank}}</b></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- FIN TABLA DE ADHESIONES DESKTOP -->
+
+                        <!-- TABLA DE ADHESIONES MOBILE -->
+                        <div *ngFor="let serviceAccession of cancelledAccessions" [ngClass]="{'disabled':!serviceAccession.automatic_debit}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 accessions-table-mobile">
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                              <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <label>Dirección N°</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <label class="header-data"><b>{{serviceAccession.address}}</b></label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                              <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <label>Tipo de adhesión</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <label *ngIf="serviceAccession.debit_type=='onlinePayment'" class="header-data">{{serviceAccession.debit_type_display_name}} {{serviceAccession.online_payment_method}}</label>
+                                  <label *ngIf="serviceAccession.debit_type=='directDebit'" class="header-data">CBU - {{serviceAccession.bank}}</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                              <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <label>Titular</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <label class="header-data">{{serviceAccession.owner_name}}</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- FIN TABLA DE ADHESIONES MOBILE -->
+
+                      </div>
+                    </div>
+
+                    <footer>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+                          <button md-raised-button class="primary-button">FINALIZAR</button>
+                          <button md-raised-button class="primary-button"><md-icon>print</md-icon> IMPRIMIR</button>
+                        </div>
+                      </div>
+                    </footer>
+                  </div>
+
+
+                </md-card>
+
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+    </div>
+  </div>
+</div>
