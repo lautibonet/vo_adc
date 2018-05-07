@@ -3,6 +3,8 @@ Virtual Office - Electric Services Providers
 
 This is a Virtual Office mock-up and design for Electric Services Providers
 
+*Disclaimer: ARTDECODE SRL, ARGENTINA, OWNS THIS PRODUCT*
+
 #### Requirements
 NPM package manager
 [Included in Node.js](https://nodejs.org/en/)
