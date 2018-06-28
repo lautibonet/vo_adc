@@ -26,3 +26,14 @@ Module not found: Error: Can't resolve 'web-animations-js' in 'C:\...\src'
  @ multi ./src/polyfills.ts 
  
  On project src run `npm install web-animations-js`
+
+#### Screenshots
+
+- Dashboard
+![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/screenshots/dashboard.png)
+
+- Bills
+![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/screenshots/bills.png)
+
+- Problems
+![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/screenshots/problems.png)
