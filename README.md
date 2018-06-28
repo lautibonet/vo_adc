@@ -30,10 +30,10 @@ Module not found: Error: Can't resolve 'web-animations-js' in 'C:\...\src'
 #### Screenshots
 
 - Dashboard
-![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/screenshots/dashboard.png)
+![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/master/screenshots/dashboard.png)
 
 - Bills
-![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/screenshots/bills.png)
+![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/master/screenshots/bills.png)
 
 - Problems
-![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/screenshots/problems.png)
+![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/master/screenshots/problems.png)
