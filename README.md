@@ -23,5 +23,5 @@ Application starts on localhost:4200
 - Bills
 ![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/master/screenshots/bills.png)
 
-- Problems
+- Complaints
 ![alt text](https://raw.githubusercontent.com/lautibonet/vo_adc/master/screenshots/problems.png)
