@@ -1,9 +1,7 @@
 # VO
 Virtual Office - Electric Services Providers
 
-This is a Virtual Office mock-up and design for Electric Services Providers
-
-*Disclaimer: ARTDECODE SRL, ARGENTINA, OWNS THIS PRODUCT*
+This is a Virtual Office mock-up and design for Public Utilities
 
 #### Requirements
 NPM package manager
@@ -16,16 +14,6 @@ On project src run `npm install` command to download dependencies
 On project src run `npm start` command to start the project.
 Application starts on localhost:4200
 
-#### Issues
-
-- If running the application throws
-
-ERROR in ./src/polyfills.ts
-Module not found: Error: Can't resolve 'web-animations-js' in 'C:\...\src'
- @ ./src/polyfills.ts 62:0-27
- @ multi ./src/polyfills.ts 
- 
- On project src run `npm install web-animations-js`
 
 #### Screenshots
 
